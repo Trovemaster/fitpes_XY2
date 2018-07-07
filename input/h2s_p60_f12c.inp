@@ -1,0 +1,190 @@
+(  CALCULATION OF VIBRATION ENERGIES FOR XY2 MOLECULE )
+(  H2S  from Per Jensen-Polyanskii paper              )
+(  2006,  Morbid type PES                             )
+
+KinOrder   8  (Max order in the kinetic energy expansion)
+PotOrder  10  (Max order in the potential energy expansion)
+
+Natoms 3      (Number of atoms)
+Nmodes 3      (Number of modes = 3*Natoms-6)
+
+(ACTIVE SPACE CUTOFFS:)
+PRIMITIVES
+  Npolyads     60      (how many polyads we calculate)
+  enercut    38000.0   (energy cut in the primitive matrix for the diagonalization)
+  potencut   190000.0
+END
+
+CONTRACTION
+  Npolyads     60       (how many polyads we calculate)
+  enercut    50000.0    (energy cut in the primitive matrix for the diagonalization)
+END
+
+
+SYMGROUP C2v(M)
+
+
+
+DIAGONALIZER 
+ SYEV
+ uplimit    40000.0
+end
+
+
+
+verbose 5
+
+dvr
+
+
+dstep 1.0e-02  (finite difference element for each mode )
+COORDS linear (type of the internal coordinates: linear or local)
+TRANSFORM  r-rho (r-rho ( xi(chi): harmonic, linear, r-s-delta, r-s-rho, r-alpha-tau, r-rho see molecule.f90))
+MOLTYPE XY2   (Identifying type of the Molecule (e.g. XY3))
+MOLECULE H2S  (Identifying the Molecule, e.g. PH3, BiH3 - optional)
+REFER-CONF RIGID  (Reference configuarion: RIGID or NON-RIGID)
+
+
+ZMAT
+    S   0  0  0  0  31.97207070
+    H   1  0  0  0   1.00782505
+    H   1  2  0  0   1.00782505
+end
+
+
+    (type     chi_kin   chi_pot)
+BASIS
+ 0,'JKtau', Jrot 0
+ 1,'numerov','linear', 'morse', range 0, 40, resc 2.0, points 2000,borders -0.8,1.40
+ 1,'numerov','linear', 'morse', range 0, 40, resc 2.0, points 2000,borders -0.8,1.40
+ 2,'numerov','linear', 'linear', range 0, 60, resc 1.0, points 4000,borders   4.0,150.0 deg
+END
+	
+
+CHECK_POINT
+hamiltonian save
+EIGENFUNC   save
+CONTRACT    save
+matelem     save
+END
+
+
+
+EQUILIBRIUM
+re13       1         0.133405450186E+01        (i0: 1.33756337958 )
+re13       1         0.133405450186E+01
+alphae     0         0.922718297672E+02  DEG   (i0: 92.2598610421)
+end
+
+
+SPECPARAM
+aa         0         1.85000000d0
+aa         0         1.85000000d0
+END
+
+
+
+POTEN
+NPARAM  99
+POT_TYPE  poten_xy2_tyuterev
+COEFF  list  (powers or list)
+b1            0      0.000000000000E+00
+b2            0      0.000000000000E+00
+g1            0      0.130000000000E+02
+g2            0      0.550000000000E+01
+F_0_0_0       0      0.000000000000E+00
+F_0_0_1       0      0.000000000000E+00
+F_1_0_0       0      0.000000000000E+00
+F_0_0_2       1      0.193252323912E+05
+F_1_0_1       1     -0.220542869561E+04
+F_1_1_0       1     -0.139952340763E+03
+F_2_0_0       1      0.318514011996E+05
+F_0_0_3       1      0.117062658418E+04
+F_1_0_2       1     -0.470049709056E+04
+F_1_1_1       1      0.332842357821E+04
+F_2_0_1       1     -0.680737279189E+03
+F_2_1_0       1     -0.245393491920E+01
+F_3_0_0       1      0.131823412426E+04
+F_0_0_4       1      0.478962535193E+04
+F_1_0_3       1     -0.137614052806E+04
+F_1_1_2       1      0.293203147883E+04
+F_2_0_2       1     -0.410563062135E+04
+F_2_1_1       1      0.112447867854E+04
+F_2_2_0       1     -0.801879465594E+02
+F_3_0_1       1     -0.397789364941E+03
+F_3_1_0       1     -0.104005255610E+03
+F_4_0_0       1      0.315771409719E+04
+F_0_0_5       1     -0.114156133769E+03
+F_1_0_4       1     -0.274020482468E+03
+F_1_1_3       1     -0.655322395719E+03
+F_2_0_3       1     -0.100436196487E+04
+F_2_1_2       1      0.109185745707E+04
+F_2_2_1       1      0.138868240531E+04
+F_3_0_2       1     -0.308337582595E+04
+F_3_1_1       1     -0.437080346137E+03
+F_3_2_0       1     -0.165306066208E+03
+F_4_0_1       1     -0.214649603219E+03
+F_4_1_0       1     -0.217327608623E+03
+F_5_0_0       1      0.156758645725E+04
+F_0_0_6       1      0.857172271790E+03
+F_1_0_5       1     -0.591469196885E+03
+F_1_1_4       1     -0.266078823222E+04
+F_2_0_4       1     -0.268434385091E+03
+F_2_1_3       1      0.603350811056E+03
+F_2_2_2       1      0.234152180449E+04
+F_3_0_3       1      0.109436012960E+03
+F_3_1_2       1     -0.338075677071E+03
+F_3_2_1       1      0.491297123474E+03
+F_3_3_0       1      0.276123498785E+03
+F_4_0_2       1     -0.269921815777E+04
+F_4_1_1       1     -0.556145201649E+03
+F_4_2_0       1      0.251585743421E+03
+F_5_0_1       1      0.115890983160E+04
+F_5_1_0       1     -0.391750731358E+03
+F_6_0_0       1     -0.577588624414E+03
+F_0_0_7       1     -0.243345220336E+03
+F_1_0_6       1     -0.681238055775E+03
+F_1_1_5       1     -0.318055560058E+04
+F_2_0_5       1      0.100646430836E+04
+F_2_1_4       1     -0.748954148309E+03
+F_2_2_3       1     -0.424802263052E+03
+F_3_0_4       1      0.129079119166E+03
+F_3_1_3       1      0.250521590287E+04
+F_3_2_2       1      0.201255538593E+04
+F_3_3_1       1      0.152809621618E+04
+F_4_0_3       1      0.382667202265E+03
+F_4_1_2       1      0.104311571652E+04
+F_4_2_1       1     -0.101262907597E+04
+F_4_3_0       1      0.197431926778E+03
+F_5_0_2       1     -0.250380456227E+04
+F_5_1_1       1     -0.102596830123E+04
+F_5_2_0       1      0.532420691914E+02
+F_6_0_1       1      0.145029531598E+04
+F_6_1_0       1     -0.260302430343E+03
+F_7_0_0       1      0.983639337511E+02
+F_0_0_8       1      0.295385959940E+04
+F_1_0_7       1     -0.290850765609E+04
+F_1_1_6       1     -0.421495811582E+04
+F_2_0_6       1      0.101309409563E+04
+F_2_1_5       1     -0.633375398707E+03
+F_2_2_4       1      0.397827269395E+03
+F_3_0_5       1      0.222442103585E+04
+F_3_1_4       1      0.294253662146E+04
+F_3_2_3       1     -0.870632228079E+03
+F_3_3_2       1      0.310982833476E+04
+F_4_0_4       1     -0.136544778494E+04
+F_4_1_3       1      0.247052391853E+03
+F_4_2_2       0      0.000000000000E+00
+F_4_3_1       1      0.376095933559E+03
+F_4_4_0       1     -0.291224718032E+03
+F_5_0_3       1     -0.155422422266E+03
+F_5_1_2       1      0.108643560109E+04
+F_5_2_1       1     -0.119649970107E+04
+F_5_3_0       1     -0.222069097428E+03
+F_6_0_2       1     -0.129508829360E+04
+F_6_1_1       1     -0.416527466954E+03
+F_6_2_0       1     -0.222157988252E+03
+F_7_0_1       1      0.304529418972E+03
+F_7_1_0       1      0.168038313146E+03
+F_8_0_0       1      0.783370388949E+03
+end
